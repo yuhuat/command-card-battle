@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>三色指令卡 · 战斗演示</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="game">
+      <header class="hud">
+        <div class="hud-item">第 <b id="turn">1</b> 回合</div>
+        <div class="hud-item">波次 <b id="wave">1/3</b></div>
+        <div class="hud-item">暴击星 <b id="stars">0</b>（<span id="crit">0%</span>）</div>
+        <button id="restart" class="ghost">重开</button>
+      </header>
+
+      <section class="side enemies" id="enemies"></section>
+      <section class="side party" id="party"></section>
+
+      <section class="hand" id="hand"></section>
+
+      <div class="actions">
+        <button id="play" class="primary" disabled>出招（选 1–3 张）</button>
+        <span class="hint">先点牌再点「出招」；颜色顺序就是出手顺序</span>
+      </div>
+
+      <section class="log" id="log"></section>
+
+      <div class="overlay hidden" id="overlay">
+        <div class="overlay-card">
+          <h2 id="overlay-title">战斗胜利</h2>
+          <p id="overlay-desc"></p>
+          <button id="overlay-btn" class="primary">再来一局</button>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
