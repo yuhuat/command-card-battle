@@ -1,0 +1,31 @@
+{
+  "name": "cardbattle",
+  "version": "0.1.0",
+  "description": "零依赖的三色指令卡回合制战斗引擎（A/Q/B 卡、职阶相性、宝具），可嵌进任何网页",
+  "type": "module",
+  "main": "src/engine.js",
+  "exports": {
+    ".": "./src/engine.js",
+    "./data": "./src/data.js"
+  },
+  "files": [
+    "src",
+    "demo",
+    "README.md",
+    "README.en.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test tests/",
+    "demo": "node scripts/serve.mjs"
+  },
+  "keywords": [
+    "game",
+    "turn-based",
+    "card-battle",
+    "browser",
+    "zero-dependency",
+    "gamedev"
+  ],
+  "license": "MIT"
+}
