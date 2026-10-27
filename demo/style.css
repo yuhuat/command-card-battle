@@ -1,0 +1,280 @@
+:root {
+  --bg: #0b1220;
+  --panel: #131c2e;
+  --line: #22304a;
+  --text: #e6edf7;
+  --muted: #8aa0bf;
+  --blue: #3b82f6;
+  --green: #22c55e;
+  --red: #ef4444;
+  --gold: #f5b642;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% -20%, #1b2a44, var(--bg) 60%);
+  color: var(--text);
+  font: 14px/1.6 "Microsoft YaHei", system-ui, sans-serif;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.game {
+  width: min(720px, 100%);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.hud {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.hud b {
+  color: var(--text);
+}
+
+.hud .ghost {
+  margin-left: auto;
+}
+
+button {
+  font: inherit;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #1a2740;
+  color: var(--text);
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: transform 0.08s ease, filter 0.15s ease;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+.primary {
+  background: linear-gradient(180deg, #3b82f6, #2b6ad4);
+  border-color: #4f8ff7;
+  font-weight: 600;
+}
+
+.side {
+  display: grid;
+  gap: 8px;
+}
+
+.side.party {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.side.enemies {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.unit {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px;
+  background: #0f1829;
+  position: relative;
+  overflow: hidden;
+}
+
+.unit.dead {
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+.unit .name {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.unit .klass {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.bar {
+  height: 7px;
+  border-radius: 999px;
+  background: #0a1220;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.bar > i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--green);
+  transition: width 0.25s ease;
+}
+
+.bar.hp > i.low {
+  background: var(--red);
+}
+
+.bar.np > i {
+  background: var(--blue);
+}
+
+.bar.np > i.full {
+  background: var(--gold);
+}
+
+.unit .nums {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.hand {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.card {
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 10px 6px;
+  text-align: center;
+  cursor: pointer;
+  background: #101a2d;
+  position: relative;
+}
+
+.card.selected {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+
+.card .type {
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.card .who {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.card.A .type {
+  color: var(--blue);
+}
+
+.card.Q .type {
+  color: var(--green);
+}
+
+.card.B .type {
+  color: var(--red);
+}
+
+.card.NP {
+  background: linear-gradient(180deg, #3a2a0a, #1a1408);
+  border-color: var(--gold);
+}
+
+.card.NP .type {
+  color: var(--gold);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.log {
+  height: 132px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #0a1220;
+  padding: 8px 10px;
+  font-size: 12.5px;
+  color: var(--muted);
+  display: grid;
+  gap: 2px;
+}
+
+.log div:last-child {
+  color: var(--text);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 8, 16, 0.78);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.overlay-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px 28px;
+  text-align: center;
+  max-width: 360px;
+}
+
+.overlay-card h2 {
+  margin: 0 0 6px;
+}
+
+.overlay-card p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+@media (max-width: 520px) {
+  .side.party,
+  .side.enemies {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hand {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .hint {
+    display: none;
+  }
+}
